@@ -1,0 +1,7 @@
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\ConsoleApp1\obj\Debug\Server.csprojResolveAssemblyReference.cache
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\ConsoleApp1\obj\Debug\Server.csproj.CoreCompileInputs.cache
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\ConsoleApp1\bin\Debug\ConsoleApp1.exe.config
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\ConsoleApp1\bin\Debug\ConsoleApp1.exe
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\ConsoleApp1\obj\Debug\ConsoleApp1.exe
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\ConsoleApp1\obj\Debug\ConsoleApp1.pdb

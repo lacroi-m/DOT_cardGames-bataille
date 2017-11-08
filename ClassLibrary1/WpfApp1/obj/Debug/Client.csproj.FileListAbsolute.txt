@@ -1,0 +1,15 @@
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\WpfApp1\bin\Debug\WpfApp1.exe.config
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\WpfApp1\bin\Debug\WpfApp1.exe
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\WpfApp1\bin\Debug\WpfApp1.pdb
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\WpfApp1\obj\Debug\Client.csprojResolveAssemblyReference.cache
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\WpfApp1\obj\Debug\MainWindow.g.cs
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\WpfApp1\obj\Debug\App.g.cs
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.cache
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.lref
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\WpfApp1\obj\Debug\MainWindow.baml
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\WpfApp1\obj\Debug\WpfApp1.g.resources
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\WpfApp1\obj\Debug\WpfApp1.Properties.Resources.resources
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\WpfApp1\obj\Debug\Client.csproj.GenerateResource.Cache
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\WpfApp1\obj\Debug\Client.csproj.CoreCompileInputs.cache
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\WpfApp1\obj\Debug\WpfApp1.exe
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\WpfApp1\obj\Debug\WpfApp1.pdb
