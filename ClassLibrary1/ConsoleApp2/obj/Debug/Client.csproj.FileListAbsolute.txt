@@ -5,3 +5,10 @@ C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\ConsoleApp2\obj\Deb
 C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\ConsoleApp2\obj\Debug\Client.csproj.CoreCompileInputs.cache
 C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\ConsoleApp2\obj\Debug\ConsoleApp2.exe
 C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\ConsoleApp2\obj\Debug\ConsoleApp2.pdb
+C:\Users\kopiz\Workplace\.NET\DOT_cardGames_2017\ClassLibrary1\ConsoleApp2\bin\Debug\ConsoleApp2.exe.config
+C:\Users\kopiz\Workplace\.NET\DOT_cardGames_2017\ClassLibrary1\ConsoleApp2\bin\Debug\ConsoleApp2.exe
+C:\Users\kopiz\Workplace\.NET\DOT_cardGames_2017\ClassLibrary1\ConsoleApp2\bin\Debug\ConsoleApp2.pdb
+C:\Users\kopiz\Workplace\.NET\DOT_cardGames_2017\ClassLibrary1\ConsoleApp2\obj\Debug\Client.csproj.CoreCompileInputs.cache
+C:\Users\kopiz\Workplace\.NET\DOT_cardGames_2017\ClassLibrary1\ConsoleApp2\obj\Debug\ConsoleApp2.exe
+C:\Users\kopiz\Workplace\.NET\DOT_cardGames_2017\ClassLibrary1\ConsoleApp2\obj\Debug\ConsoleApp2.pdb
+C:\Users\kopiz\Workplace\.NET\DOT_cardGames_2017\ClassLibrary1\ConsoleApp2\obj\Debug\Client.csprojResolveAssemblyReference.cache
