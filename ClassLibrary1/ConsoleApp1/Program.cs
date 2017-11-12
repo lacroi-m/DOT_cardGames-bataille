@@ -1,45 +1,87 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using ConsoleApp1;
 using NetworkCommsDotNet;
 using NetworkCommsDotNet.Connections;
-using System.Net;
-using System.Net.Sockets;
+
+
 namespace ServerApplication
 {
-    class Program
+    class Server
     {
+        private static int nbrofclientsconnected = 0;
+        private static List<int> clientports = new List<int>();
+        private static bool launchGame;
+
         static void Main(string[] args)
         {
-            //Trigger the method PrintIncomingMessage when a packet of type 'Message' is received
-            //We expect the incoming object to be a string which we state explicitly by using <string>
-            NetworkComms.AppendGlobalIncomingPacketHandler<string>("Message", PrintIncomingMessage);
-            //Start listening for incoming connections
-            Connection.StartListening(ConnectionType.TCP, new System.Net.IPEndPoint(System.Net.IPAddress.Parse("127.0.0.1"), 4242));
-
-            //Print out the IPs and ports we are now listening on
-            Console.WriteLine("Server listening for TCP connection on:");
-            foreach (System.Net.IPEndPoint localEndPoint in Connection.ExistingLocalListenEndPoints(ConnectionType.TCP))
-                Console.WriteLine("{0}:{1}", localEndPoint.Address, localEndPoint.Port);
-
-            //Let the user close the server
-            Console.WriteLine("\nPress any key to close server.");
-            Console.ReadKey(true);
-
-            //We have used NetworkComms so we should ensure that we correctly call shutdown
-            NetworkComms.Shutdown();
+            Connection.StartListening(ConnectionType.TCP,
+                new System.Net.IPEndPoint(System.Net.IPAddress.Parse("127.0.0.1"), 10101));
+            NetworkComms.AppendGlobalIncomingPacketHandler<String>("First Connection", FirstConnect);
+            Console.WriteLine("Press any key to close server.");
+            while (true)
+            {
+                if (Console.KeyAvailable)
+                {
+                    ShutDownClients();
+                    break;
+                }
+                if (nbrofclientsconnected % 2 == 0 && nbrofclientsconnected != 0 && launchGame == false)
+                {
+                    Client fClient = new Client();
+                    fClient.Port = clientports[nbrofclientsconnected - 2];
+                    Client sClient = new Client();
+                    sClient.Port = clientports[nbrofclientsconnected - 1];
+                    Game g1 = new Game(fClient, sClient);
+                    g1.Launch();
+                    Console.WriteLine("A Game has been launched");
+                    launchGame = true;
+                    if (Console.KeyAvailable)
+                    {
+                        ShutDownClients();
+                        break;
+                    }
+                }
+            }
+            Environment.Exit(0);
         }
 
-        /// <summary>
-        /// Writes the provided message to the console window
-        /// </summary>
-        /// <param name="header">The packet header associated with the incoming message</param>
-        /// <param name="connection">The connection used by the incoming message</param>
-        /// <param name="message">The message to be printed to the console</param>
-        private static void PrintIncomingMessage(PacketHeader header, Connection connection, string message)
+        private static void ShutDownClients()
         {
-            Console.WriteLine("\nA message was received from " + connection.ToString() + " which said '" + message + "'.");
+            if (nbrofclientsconnected != 0)
+                for (int i = 0; i < nbrofclientsconnected; i++)
+                {
+                    try
+                    {
+                        NetworkComms.SendObject("666", "127.0.0.1", clientports[i], "Server shutting down");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                }
+            NetworkComms.Shutdown();
+            Environment.Exit(0);
+        }
+
+        private static void FirstConnect(PacketHeader header, Connection connection, string empty)
+        {
+            string port = connection.ToString();
+            port = port.Split(':').Last();
+            port = port.Split(' ').First();
+            clientports.Add(int.Parse(port));
+            try
+            {
+                NetworkComms.SendObject("002", "127.0.0.1", clientports[nbrofclientsconnected],
+                    $"002: Waiting for other players to connect.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            nbrofclientsconnected++;
+            launchGame = false;
         }
     }
 }

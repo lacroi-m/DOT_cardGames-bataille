@@ -1,81 +1,72 @@
 ﻿using System;
-using System.Linq;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
+using System.Collections.Generic;
+using ConsoleApp1;
 using NetworkCommsDotNet;
+using NetworkCommsDotNet.Connections;
+using Newtonsoft.Json;
 
 namespace ClientApp
 {
-    class Program
+    class Client
     {
-
-
-
-
-
-
-
-
-
-        public static void ActionReaction(byte[] message)
-        {
-            string[] IRCreceive = new string[]
-            {
-                "000: YOU ARE CONNECTED!",
-                "001: Waiting for other players to connect.",
-                "002: STARTING GAME - Dealing Cards.",
-                "003: Play a card.",
-                "004: Card received.",
-                "005: Sending your wins.",
-                "006: Waiting for opponent to play a card.",
-                "007: You loose the round.",
-                "008: Sending your wins.",
-                "009: YOU LOOSE THE GAME.",
-                "010: YOU WIN THE GAME.",
-                "011: SCORE [NBR] - [NBR].",
-                "666: FATAL ERROR."
-            };
-            string[] IRCsend = new string[]
-            {
-                "101: Message received.",
-                "102: Deck received.",
-                "103: Sending card.",
-                "104: Wins received. Putting them at the bottom of my deck.",
-                "105: GTG."
-            };
-        }
+        private static Deck MyDeck = new Deck(false);
+        static string serverIP = "127.0.0.1";
+        static int serverPort = 10101;
 
         static void Main(string[] args)
         {
-            //Request server IP and port number
-            Console.WriteLine(
-                "Please enter the server IP and port in the format 192.168.0.1:10000 and press return:");
-            string serverInfo = Console.ReadLine();
-
-            //Parse the necessary information out of the provided string
-            string serverIP = serverInfo.Split(':').First();
-            int serverPort = int.Parse(serverInfo.Split(':').Last());
-
-            //Keep a loopcounter
-            int loopCounter = 1;
+            MyDeck = new Deck(false);
+            NetworkComms.SendObject("First Connection", serverIP, serverPort, "");
+            NetworkComms.AppendGlobalIncomingPacketHandler<string>("002", PrintIncomingMessage);
+            NetworkComms.AppendGlobalIncomingPacketHandler<string>("004", ReceiveWins);
+            NetworkComms.AppendGlobalIncomingPacketHandler<string>("005", ReceiveCard);
+            NetworkComms.AppendGlobalIncomingPacketHandler<string>("666", ServerShutDown);
+            NetworkComms.AppendGlobalIncomingPacketHandler<string>("003", PlayACard);
             while (true)
             {
-                //Write some information to the console window
-                string messageToSend = "This is message #" + loopCounter;
-                Console.WriteLine("Sending message to server saying '" + messageToSend + "'");
-
-                //Send the message in a single line
-                NetworkComms.SendObject("Message", serverIP, serverPort, messageToSend);
-
-                //Check if user wants to go around the loop
-                Console.WriteLine("\nPress q to quit or any other key to send another message.");
-                if (Console.ReadKey(true).Key == ConsoleKey.Q) break;
-                else loopCounter++;
             }
+        }
 
-            //We have used comms so we make sure to call shutdown
-            NetworkComms.Shutdown();
+        private static void PrintIncomingMessage(PacketHeader packetheader, Connection connection, string incomingobject)
+        {
+            Console.WriteLine(incomingobject);
+        }
+
+        private static void PlayACard(PacketHeader papckeHeader, Connection connection, string empty)
+        {
+            Console.WriteLine("\nPress any key to Play a card.");
+            Console.ReadKey(true);
+            Console.Write("You have :" + MyDeck.CardsInDeck() + "cards.");
+            Console.WriteLine("Youve played: " + MyDeck.GetDeck()[0].GetValue() + "\nwith color " + MyDeck.GetDeck()[0].GetColor());
+            string jsonCard = JsonConvert.SerializeObject(MyDeck.GetDeck()[0]);
+            NetworkComms.SendObject("103", serverIP, serverPort, jsonCard);
+            MyDeck.GetDeck().RemoveAt(0);
+        }
+
+        private static void ReceiveWins(PacketHeader papckeHeader, Connection connection, string jsonCards)
+        {
+            List<Card> deserializedCard = JsonConvert.DeserializeObject<List<Card>>(jsonCards);
+            for (int i = 0; i < deserializedCard.Count; i++)
+                MyDeck.AddCard(deserializedCard[i]);
+        }
+        private static void ReceiveCard(PacketHeader papckeHeader, Connection connection, string jsonCard)
+        {
+            Card deserializedCard = JsonConvert.DeserializeObject<Card>(jsonCard);
+            Console.WriteLine("Receiving Card :\n value = " + deserializedCard.GetValue() +"\n color  = " + deserializedCard.GetColor());
+            MyDeck.AddCard(deserializedCard);
+        }
+
+        private static void ServerShutDown(PacketHeader packetheader, Connection connection, string incomingobject)
+        {
+            Console.WriteLine("Server shutting down\nThis client will close in 3 seconds");
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            while (true)
+            {
+                if (watch.ElapsedMilliseconds > 3000)
+                    break;
+            }
+            watch.Stop();
+            Environment.Exit(0);
         }
     }
 }

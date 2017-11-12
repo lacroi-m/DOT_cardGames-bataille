@@ -1,4 +1,3 @@
-C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\UnitTestProject1\obj\Debug\UnitTestProject1.csprojResolveAssemblyReference.cache
 C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\UnitTestProject1\obj\Debug\UnitTestProject1.csproj.CoreCompileInputs.cache
 C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\UnitTestProject1\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
 C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\UnitTestProject1\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
@@ -43,3 +42,5 @@ C:\Users\kopiz\Workplace\.NET\DOT_cardGames_2017\ClassLibrary1\UnitTestProject1\
 C:\Users\kopiz\Workplace\.NET\DOT_cardGames_2017\ClassLibrary1\UnitTestProject1\obj\Debug\UnitTestProject1.csproj.CoreCompileInputs.cache
 C:\Users\kopiz\Workplace\.NET\DOT_cardGames_2017\ClassLibrary1\UnitTestProject1\obj\Debug\UnitTestProject1.dll
 C:\Users\kopiz\Workplace\.NET\DOT_cardGames_2017\ClassLibrary1\UnitTestProject1\obj\Debug\UnitTestProject1.pdb
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\UnitTestProject1\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\UnitTestProject1\bin\Debug\Newtonsoft.Json.xml

@@ -1,128 +1,59 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace ConsoleApp1
 {
+    [JsonObject(MemberSerialization.OptOut)]
     public class Deck
     {
-        private ArrayList _deck;
-
+        [JsonProperty]
+        public List<Card> _deck = new List<Card>();
         //Ctor
+
         public Deck(bool creat)
         {
-            //true : crée un deck de 52 cartes
-            //false : deck vide
-            if (creat == true)
-                Create();
+            if (creat)              //true : crée un deck de 52 cartes
+              Create();
+                                    //false : deck vide
+        }
+
+        public Deck(List<Card> deck)
+        {
+            _deck = deck;
+        }
+
+        public void AddCard(Card card)
+        {
+            _deck.Add(card);
+        }
+
+        public int CardsInDeck()
+        {
+            return _deck.Capacity;
         }
 
         public void Create()
         {
-            var color = new Color();
-            var value = - 1;
-            var i = 0;
-            var j = 0;
-            var k = 0;
-
-            while (i < 4)
+            int value = 0;
+            int color = 0;
+            int id = 1;
+            while (id <= 52)
             {
-
-                k = 0;
-                while (k < 13)
+                while (++value < 14)
                 {
-                    var card = new Card();
-
-                    if (k == 1)
-                        value = 14;
-                    if (k != 1)
-                        value = k;
-                    color = GetEColor(i);
+                    if (++color == 4)
+                        color = 0;
+                    Card card = new Card(id++);
                     card.SetValue(value);
-                    card.SetColor(color);
+                    card.SetTheColor(color);
                     _deck.Add(card);
-                    k = k + 1;
                 }
-                i = i + 1;
+                value = 0;
             }
-        }
-
-        public Deck(ArrayList deck)
-        {
-            _deck = deck;
-        }
-
-        //Member
-        public Color GetEColor(int i)
-        {
-            var color = new Color();
-            var col = color.GetColor();
-
-            switch (i)
-            {
-                case 0:
-                    col = EColor.Coeur;
-                    break;
-                case 1:
-                    col = EColor.Pique;
-                    break;
-                case 2:
-                    col = EColor.Trefle;
-                    break;
-                case 3:
-                    col = EColor.Carreau;
-                    break;
-                default:
-                    col = EColor.None;
-                    break;
-            }
-            color.SetColor(col);
-            return (color);
-        }
-
-        public int GetId(Deck added, int nb)
-        {
-            var i = 0;
-            var j = 0;
-
-            while (i < _deck.Count)
-            {
-                if (!added.GetDeck().Contains(GetDeck()[i]))
-                {
-                    j = j + 1;
-                    if (j == nb)
-                        return (i);
-                }
-                i = i + 1;
-            }
-            return (- 1);
-        }
-
-        public Deck Mix()
-        {
-            var rnd = new Random();
-            var bis = new Deck(false);
-            var tmp = new Deck(_deck);
-            var i = _deck.Count - 1;
-            var nb = 0;
-
-            while (tmp.GetDeck().Count != _deck.Count)
-            {
-                nb = rnd.Next(0, i);
-                bis.GetDeck().Add(tmp.GetDeck()[nb]);
-                tmp.GetDeck().Remove(tmp.GetDeck()[nb]);
-                i = i - 1;
-            }
-            return (bis);
-        }
-
-        //Setter
-        public void SetDeck(ArrayList deck)
-        {
-            _deck = deck;
         }
 
         //Getter
-        public ArrayList GetDeck()
+        public List<Card> GetDeck()
         {
             return (_deck);
         }
