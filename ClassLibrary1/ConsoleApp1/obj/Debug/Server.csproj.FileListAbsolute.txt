@@ -14,3 +14,4 @@ C:\Users\kopiz\Workplace\.NET\DOT_cardGames_2017\ClassLibrary1\ConsoleApp1\obj\D
 C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\ConsoleApp1\bin\Debug\NetworkCommsDotNet.dll
 C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\ConsoleApp1\bin\Debug\Newtonsoft.Json.dll
 C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\ConsoleApp1\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ze\Desktop\gitshit\DOT_cardGames_2017\ClassLibrary1\ConsoleApp1\obj\Debug\Server.csprojResolveAssemblyReference.cache
